@@ -1,30 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/model/note.dart';
 
-// ignore: must_be_immutable
 class DisplayNote extends StatelessWidget {
-   DisplayNote({required this.displayNote,super.key});
-Note displayNote;
+  const DisplayNote({required this.displayNote, super.key});
+  final Note displayNote;
   @override
   Widget build(BuildContext context) {
+    print(displayNote.notetextdir);
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
         backgroundColor: Colors.grey[300],
         elevation: 0,
         automaticallyImplyLeading: false,
-        actions: [ IconButton(
+        actions: [
+          IconButton(
               onPressed: () => Navigator.pop(context),
-              icon: const Icon(Icons.close))],
+              icon: const Icon(Icons.close))
+        ],
       ),
-      body: Padding(
+      body: Container(
+        width: double.infinity,
         padding: const EdgeInsets.all(12),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: displayNote.notetextdir==TextDirection.rtl?CrossAxisAlignment.end:CrossAxisAlignment.start,
           children: [
-            Text(displayNote.subTitle!,style: const TextStyle(fontSize: 32,fontWeight: FontWeight.bold),),
-            const SizedBox(height: 15,),
-            Text(displayNote.noteText!,style: const TextStyle(fontSize: 18),)
+            Text(
+              displayNote.subTitle!,
+              style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Text(
+              displayNote.noteText!,
+              style: const TextStyle(fontSize: 26),
+            )
           ],
         ),
       ),

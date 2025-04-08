@@ -1,3 +1,4 @@
+import 'package:flutter/painting.dart';
 import 'package:hive/hive.dart';
 part 'note.g.dart';
 
@@ -7,5 +8,7 @@ class Note extends HiveObject {
   String? subTitle;
   @HiveField(1)
   String? noteText;
-  Note({this.subTitle, this.noteText});
+    @HiveField(2)
+  TextDirection? notetextdir;
+  Note({this.subTitle, this.noteText,this.notetextdir});
 }
